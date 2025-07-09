@@ -124,8 +124,19 @@ class MusicManager:
         self.idle_channel = pygame.mixer.Channel(1)
 
     def get_full_path(self, name):
-        """Return the path to an .mp3 file inside self.folder."""
-        return path.join(self.folder, f"{name}.mp3")
+        """Return the path to an .mp3 file inside self.folder.
+        First tries exact match, then tries case-insensitive and underscore/space variations."""
+        exact_path = path.join(self.folder, f"{name}.mp3")
+        if path.exists(exact_path):
+            return exact_path
+        
+        # Try alternative matching
+        alt_path = self.find_music_file_case_insensitive(name)
+        if alt_path:
+            return alt_path
+            
+        # Return original path if no alternatives found (will fail gracefully elsewhere)
+        return exact_path
 
     def load_base_track(self):
         """
@@ -150,7 +161,7 @@ class MusicManager:
 
     def find_music_file_case_insensitive(self, track_name):
         """
-        Try to find a music file with case-insensitive matching.
+        Try to find a music file with case-insensitive matching and underscore/space conversion.
         Returns the full path if found, None otherwise.
         """
         if not os.path.exists(self.folder):
@@ -158,11 +169,27 @@ class MusicManager:
             
         try:
             files = os.listdir(self.folder)
-            target_filename = f"{track_name}.mp3".lower()
             
+            # Try exact match first (case-insensitive)
+            target_filename = f"{track_name}.mp3".lower()
             for file in files:
                 if file.lower() == target_filename:
                     return os.path.join(self.folder, file)
+            
+            # Try with underscore to space conversion
+            track_with_spaces = track_name.replace('_', ' ')
+            target_filename_spaces = f"{track_with_spaces}.mp3".lower()
+            for file in files:
+                if file.lower() == target_filename_spaces:
+                    return os.path.join(self.folder, file)
+            
+            # Try with space to underscore conversion
+            track_with_underscores = track_name.replace(' ', '_')
+            target_filename_underscores = f"{track_with_underscores}.mp3".lower()
+            for file in files:
+                if file.lower() == target_filename_underscores:
+                    return os.path.join(self.folder, file)
+                    
         except Exception as e:
             print(f"[MusicManager] Error searching for alternative files: {e}")
         

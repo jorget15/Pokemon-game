@@ -60,7 +60,7 @@
     "dialogue": "",
     "behavior": "standing",
     "aggressive": false,
-    "position": [288, 180, 32, 32],
+    "position": [288, 150, 32, 32],
     "pokemon": []
   }
 }
