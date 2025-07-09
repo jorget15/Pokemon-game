@@ -1,0 +1,66 @@
+{
+  "mother": {
+    "sprite": "mother.png",
+    "dialogue": "You must use your PC before going outside!",
+    "behavior": "patrol",
+    "aggressive": false,
+    "position": [100, 80],
+    "pokemon": []
+  },
+  "gustavo1": {
+    "sprite": "gustavoTrainer.png",
+    "dialogue": "You walked into the wrong town, kid.",
+    "behavior": "wander",
+    "aggressive": true,
+    "position": [400, 300],
+    "pokemon": [
+      {
+        "name": "rattata",
+        "level": 4
+      },
+      {
+        "name": "pidgey",
+        "level": 5
+      }
+    ]
+  },
+  "arsenio": {
+    "sprite": "arsenioTrainer.png",
+    "dialogue": "I'm just getting started as a trainer!",
+    "behavior": "wander",
+    "aggressive": true,
+    "position": [250, 350],
+    "pokemon": [
+      {
+        "name": "caterpie",
+        "level": 3
+      }
+    ]
+  },
+  "gustavo2": {
+    "sprite": "gustavoTrainer.png",
+    "dialogue": "Come back for more, huh?",
+    "behavior": "patrol",
+    "look_pattern": ["left", "down", "right", "up", "wait"],
+    "aggressive": true,
+    "position": [500, 400],
+    "pokemon": [
+      {
+        "name": "geodude",
+        "level": 6
+      },
+      {
+        "name": "nidoran-m",
+        "level": 5
+      }
+    ]
+  },
+  "pc": {
+    "sprite": "pc.png",
+    "dialogue": "",
+    "behavior": "standing",
+    "aggressive": false,
+    "position": [288, 180, 32, 32],
+    "pokemon": []
+  }
+}
