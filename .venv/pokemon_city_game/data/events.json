@@ -35,7 +35,7 @@
       "interactions": [
         {
           "id": "pc",
-          "trigger_rect": [288, 180, 32, 32],
+          "trigger_rect": [280, 142, 48, 48],
           "dialogue": "You used the PC! Now you can go outside.",
           "set_flags": {
             "pc_used": true,
